@@ -135,7 +135,7 @@ class _AddSubjectState extends State<AddSubject> {
                 Flexible(
                   child: DropdownButton(
                     value: levelController,
-                    items: ['Materic', 'FSc', 'BSc', 'MS', 'PhD']
+                    items: ['Matric', 'FSc', 'BSc', 'MS', 'PhD']
                         .map(
                           (e) => DropdownMenuItem(
                             child: Text(e),
