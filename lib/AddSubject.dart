@@ -12,7 +12,7 @@ class AddSubject extends StatefulWidget {
 class _AddSubjectState extends State<AddSubject> {
   final titleController = TextEditingController();
 
-  String levelController = 'Bachelors';
+  String levelController = 'BSc';
 
   final theoryHrsController = TextEditingController();
 
@@ -23,10 +23,6 @@ class _AddSubjectState extends State<AddSubject> {
         theoryHrsController.text.length > 0 &&
         labHrsController.text.length > 0) {
       var response = await http.post(createApiURI,
-          // headers: {
-          //   "Content-Type": "application/json; charset=UTF-8",
-          //   "Access-Control-Allow-Origin": "*"
-          // },
           body: jsonEncode({
             "title": titleController.text,
             "level": levelController,
@@ -118,7 +114,7 @@ class _AddSubjectState extends State<AddSubject> {
                 Flexible(
                   child: DropdownButton(
                     value: levelController,
-                    items: ['Materic', 'FSc', 'Bachelors', 'Masters', 'PhD']
+                    items: ['Materic', 'FSc', 'BSc', 'MS', 'PhD']
                         .map(
                           (e) => DropdownMenuItem(
                             child: Text(e),

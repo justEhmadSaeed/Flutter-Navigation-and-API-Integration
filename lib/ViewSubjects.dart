@@ -59,6 +59,8 @@ class ViewSubjects extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else {
+              List filteredList =
+                  snapshot.data.where((item) => (item['title'] != '')).toList();
               return Column(
                 children: [
                   Expanded(
@@ -75,7 +77,7 @@ class ViewSubjects extends StatelessWidget {
                             DataColumn(label: Text('Theory Hrs')),
                             DataColumn(label: Text('Lab Hrs')),
                           ],
-                          rows: snapshot.data
+                          rows: filteredList
                               .map<DataRow>(
                                 (record) => DataRow(cells: [
                                   DataCell(Text(record['title'] ?? '___')),
