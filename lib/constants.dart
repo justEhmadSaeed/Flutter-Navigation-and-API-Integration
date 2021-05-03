@@ -1,6 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
-var apiURL = Uri.parse('https://pcc.edu.pk/ws/list/subjects.php');
+final apiURL = Uri.parse('https://pcc.edu.pk/ws/list/subjects.php');
+
+final kAddSubjectTextStyle = TextStyle(fontSize: 20);
 
 final kDrawerHeader = DrawerHeader(
   child: Column(
