@@ -4,7 +4,8 @@ A Flutter application with proper navigation and routes handling and API data fe
 
 ## ⏮ Preview
 
-![image](https://user-images.githubusercontent.com/46846821/116935578-f79cbb00-ac7f-11eb-8209-50d369755c65.png)
+![preview](https://user-images.githubusercontent.com/46846821/116935787-49dddc00-ac80-11eb-9985-6a1abb36baf5.gif)
+
 
 ## Getting Started
 
