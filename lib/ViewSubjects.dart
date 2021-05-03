@@ -5,7 +5,7 @@ import 'dart:convert';
 
 class ViewSubjects extends StatelessWidget {
   Future fetchSubjects() async {
-    var response = await http.get(apiURL);
+    var response = await http.get(fetchApiURI);
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
       return result;

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:web_api_integration/AlertDialog.dart';
 import 'package:web_api_integration/constants.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class AddSubject extends StatefulWidget {
   @override
@@ -14,6 +17,44 @@ class _AddSubjectState extends State<AddSubject> {
   final theoryHrsController = TextEditingController();
 
   final labHrsController = TextEditingController();
+
+  Future sendSubjectsData() async {
+    if (titleController.text.length > 0 &&
+        theoryHrsController.text.length > 0 &&
+        labHrsController.text.length > 0) {
+      var response = await http.post(createApiURI,
+          // headers: {
+          //   "Content-Type": "application/json; charset=UTF-8",
+          //   "Access-Control-Allow-Origin": "*"
+          // },
+          body: jsonEncode({
+            "title": titleController.text,
+            "level": levelController,
+            "theoryHours": theoryHrsController.text,
+            "labHours": labHrsController.text
+          }));
+      var result = jsonDecode(response.body);
+      print(result);
+      showAlertDialog(
+          context: context,
+          title: "Request Sent",
+          content: result['message'],
+          onPressed: () {
+            titleController.clear();
+            theoryHrsController.clear();
+            labHrsController.clear();
+            Navigator.pop(context);
+          });
+    } else {
+      showAlertDialog(
+          context: context,
+          title: "Failed!",
+          content: "Kindly Fill all required fields.",
+          onPressed: () {
+            Navigator.pop(context);
+          });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +158,7 @@ class _AddSubjectState extends State<AddSubject> {
             Padding(
               padding: const EdgeInsets.all(15),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: sendSubjectsData,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
