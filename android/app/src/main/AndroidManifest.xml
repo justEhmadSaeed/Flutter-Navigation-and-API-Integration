@@ -1,8 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.web_api_integration">
-   <!-- Required to fetch data from the internet. -->
-<uses-permission android:name="android.permission.INTERNET" />
-<application
+    <!-- Required to fetch data from the internet. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+   <application
         android:label="web_api_integration"
         android:icon="@mipmap/ic_launcher">
         <activity
