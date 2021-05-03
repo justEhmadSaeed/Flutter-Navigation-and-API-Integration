@@ -1,6 +1,6 @@
-# web_api_integration
+# Flutter-Navigation-and-API-Integration
 
-A new Flutter project.
+A Flutter application with proper navigation and routes handling and API data fetching and posting.
 
 ## Getting Started
 
