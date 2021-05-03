@@ -59,15 +59,16 @@ class ViewSubjects extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else {
-              print(snapshot.data);
               return Column(
                 children: [
                   Expanded(
                     child: Container(
                       padding: EdgeInsets.all(5),
                       child: SingleChildScrollView(
-                        scrollDirection: Axis.vertical,
+                        scrollDirection: Axis.horizontal,
                         child: DataTable(
+                          showBottomBorder: true,
+                          // columnSpacing: 100,
                           columns: [
                             DataColumn(label: Text('Title')),
                             DataColumn(label: Text('Level')),
@@ -77,10 +78,11 @@ class ViewSubjects extends StatelessWidget {
                           rows: snapshot.data
                               .map<DataRow>(
                                 (record) => DataRow(cells: [
-                                  DataCell(Text(record['title'] ?? '')),
-                                  DataCell(Text(record['level'] ?? '')),
-                                  DataCell(Text(record['theoryHours'] ?? '')),
-                                  DataCell(Text(record['labHours'] ?? '')),
+                                  DataCell(Text(record['title'] ?? '___')),
+                                  DataCell(Text(record['level'] ?? '___')),
+                                  DataCell(
+                                      Text(record['theoryHours'] ?? '___')),
+                                  DataCell(Text(record['labHours'] ?? '___')),
                                 ]),
                               )
                               .toList(),
