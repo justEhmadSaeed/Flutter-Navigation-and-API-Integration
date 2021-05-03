@@ -2,6 +2,10 @@
 
 A Flutter application with proper navigation and routes handling and API data fetching and posting.
 
+## ⏮ Preview
+
+![image](https://user-images.githubusercontent.com/46846821/116935578-f79cbb00-ac7f-11eb-8209-50d369755c65.png)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
