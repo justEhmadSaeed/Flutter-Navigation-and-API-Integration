@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const String apiURL = 'https://pcc.edu.pk/ws/list/subjects.php';
+var apiURL = Uri.parse('https://pcc.edu.pk/ws/list/subjects.php');
 
 final kDrawerHeader = DrawerHeader(
   child: Column(
