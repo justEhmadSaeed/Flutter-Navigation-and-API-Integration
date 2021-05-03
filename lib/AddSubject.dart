@@ -57,6 +57,18 @@ class _AddSubjectState extends State<AddSubject> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Add Subject'),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.visibility),
+              onPressed: () {
+                Navigator.popAndPushNamed(context, '/view-subjects');
+              }),
+          IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                Navigator.popUntil(context, ModalRoute.withName('/'));
+              })
+        ],
       ),
       drawer: Drawer(
         child: ListView(
@@ -94,6 +106,15 @@ class _AddSubjectState extends State<AddSubject> {
         padding: const EdgeInsets.all(15),
         child: Column(
           children: [
+            Hero(
+              tag: 'logo',
+              child: Image(
+                image: AssetImage(
+                  'assets/logo.png',
+                ),
+                width: 150,
+              ),
+            ),
             Flexible(
               child: TextField(
                 style: kAddSubjectTextStyle,

@@ -7,6 +7,18 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                Navigator.pushNamed(context, '/add-subject');
+              }),
+          IconButton(
+              icon: Icon(Icons.visibility),
+              onPressed: () {
+                Navigator.pushNamed(context, '/view-subjects');
+              })
+        ],
       ),
       drawer: Drawer(
         child: ListView(
@@ -45,11 +57,14 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image(
-              image: AssetImage(
-                'assets/logo.png',
+            Hero(
+              tag: 'logo',
+              child: Image(
+                image: AssetImage(
+                  'assets/logo.png',
+                ),
+                width: 300,
               ),
-              width: 300,
             ),
             Text(
               'Manage Your Subjects with a Single Touch',

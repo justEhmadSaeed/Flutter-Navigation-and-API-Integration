@@ -17,6 +17,18 @@ class ViewSubjects extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('View Subject'),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                Navigator.popAndPushNamed(context, '/add-subject');
+              }),
+          IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                Navigator.popUntil(context, ModalRoute.withName('/'));
+              })
+        ],
       ),
       drawer: Drawer(
         child: ListView(
@@ -50,53 +62,60 @@ class ViewSubjects extends StatelessWidget {
           ],
         ),
       ),
-      body: Container(
-        child: FutureBuilder(
-          future: fetchSubjects(),
-          builder: (BuildContext _, AsyncSnapshot snapshot) {
-            if (!snapshot.hasData) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else {
-              List filteredList =
-                  snapshot.data.where((item) => (item['title'] != '')).toList();
-              return Column(
-                children: [
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.all(5),
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: DataTable(
-                          showBottomBorder: true,
-                          // columnSpacing: 100,
-                          columns: [
-                            DataColumn(label: Text('Title')),
-                            DataColumn(label: Text('Level')),
-                            DataColumn(label: Text('Theory Hrs')),
-                            DataColumn(label: Text('Lab Hrs')),
-                          ],
-                          rows: filteredList
-                              .map<DataRow>(
-                                (record) => DataRow(cells: [
-                                  DataCell(Text(record['title'] ?? '___')),
-                                  DataCell(Text(record['level'] ?? '___')),
-                                  DataCell(
-                                      Text(record['theoryHours'] ?? '___')),
-                                  DataCell(Text(record['labHours'] ?? '___')),
-                                ]),
-                              )
-                              .toList(),
-                        ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(children: [
+          Hero(
+            tag: 'logo',
+            child: Image(
+              image: AssetImage(
+                'assets/logo.png',
+              ),
+              width: 150,
+            ),
+          ),
+          FutureBuilder(
+            future: fetchSubjects(),
+            builder: (BuildContext _, AsyncSnapshot snapshot) {
+              if (!snapshot.hasData) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                List filteredList = snapshot.data
+                    .where((item) => (item['title'] != ''))
+                    .toList();
+                return Expanded(
+                  child: ListView(children: [
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: DataTable(
+                        showBottomBorder: true,
+                        // columnSpacing: 100,
+                        columns: [
+                          DataColumn(label: Text('Title')),
+                          DataColumn(label: Text('Level')),
+                          DataColumn(label: Text('Theory Hrs')),
+                          DataColumn(label: Text('Lab Hrs')),
+                        ],
+                        rows: filteredList
+                            .map<DataRow>(
+                              (record) => DataRow(cells: [
+                                DataCell(Text(record['title'] ?? '___')),
+                                DataCell(Text(record['level'] ?? '___')),
+                                DataCell(Text(record['theoryHours'] ?? '___')),
+                                DataCell(Text(record['labHours'] ?? '___')),
+                              ]),
+                            )
+                            .toList(),
                       ),
                     ),
-                  ),
-                ],
-              );
-            }
-          },
-        ),
+                  ]),
+                );
+              }
+            },
+          )
+        ]),
       ),
     );
   }
